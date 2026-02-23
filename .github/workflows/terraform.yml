@@ -19,7 +19,7 @@ jobs:
         include:
           - environment: dev  
             region: us-east-1
-          - environment: test
+          - environment: test4
             region: us-east-2
     defaults:
       run:
