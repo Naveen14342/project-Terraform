@@ -14,6 +14,7 @@ jobs:
   my_job:
     runs-on: self-hosted
     strategy:
+      max-parallel: 1
       matrix:
         include:
           - environment: dev  
