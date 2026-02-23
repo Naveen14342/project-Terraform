@@ -20,7 +20,7 @@ jobs:
             region: us-east-1
           - environment: test
             region: us-east-2
-    default:
+    defaults:
       run:
         working-directory: env/${{ matrix.environment }} 
 
