@@ -12,40 +12,40 @@ permissions:
 
 jobs:
   my_job:
-  runs-on: self-hosted
-  strategy:
-    matrix:
-      include:
-        - environment: dev  
-          region: us-east-1
-        - environment: test
-          region: us-east-2
-  default:
-    run:
-      working-directory: env/${{ matrix.environment }} 
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        include:
+          - environment: dev  
+            region: us-east-1
+          - environment: test
+            region: us-east-2
+    default:
+      run:
+        working-directory: env/${{ matrix.environment }} 
 
 
-  steps:
-    - name: checkout
-      uses: actions/checkout@v3
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
 
-    - name: aws-credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: arn:aws:iam::083546510488:role/github-pipeline
-        aws-region: ${{ matrix.region }}  
+      - name: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::083546510488:role/github-pipeline
+          aws-region: ${{ matrix.region }}  
 
 
-    - name: setup terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.7.0
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.7.0
 
-    - name: terraform init
-      run: terraform init
+      - name: terraform init
+        run: terraform init
 
-    - name: terraform plan
-      run: terraform plan -out=tfplan
+      - name: terraform plan
+        run: terraform plan -out=tfplan
 
-    - name: terraform apply
-      run: terraform apply -auto-approve tfplan
+      - name: terraform apply
+        run: terraform apply -auto-approve tfplan
