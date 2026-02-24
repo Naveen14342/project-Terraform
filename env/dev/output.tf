@@ -5,10 +5,10 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-    value = module.aws_subnet.public[*].id
+    value = module.aws_vpc.public_subnets
 }
 
 output "private_subnet_ids" {
-    value = module.aws_subnet.private[*].id
+    value = module.aws_vpc.private_subnets
   
 }
