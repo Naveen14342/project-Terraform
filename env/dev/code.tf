@@ -32,12 +32,12 @@ module "aws_vpc" {
 
   public_subnet_tags = {
     "kubernetes.io/role/elb" = "1"
-    "kubernetes.io/cluster/my-cluster" = "shared"
+    "kubernetes.io/cluster/my-eks-cluster" = "shared"
   }
 
   private_subnet_tags = {
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/my-cluster" = "shared"
+    "kubernetes.io/cluster/my-eks-cluster" = "shared"
   }
 
 }
